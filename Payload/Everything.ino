@@ -10,7 +10,7 @@ float current_height=0;
 
 
 void setup() {
-  
+
 Serial.begin(9600);
 proximity.begin();
 proximity.alarm();
@@ -20,8 +20,8 @@ proximity.calibrate(10);
 
 Sebastian.begin();
 Sebastian.calibrate();
-Sebastian.alarm(); 
-Sebastian.beginTimer(10000); //allows time for descent
+Sebastian.alarm(1,800,500);
+Sebastian.beginTimer(1000); //allows time for descent
 
 
 
@@ -34,21 +34,22 @@ myaltimeter.alarm();
 
 
 void loop() {
-  current_height = myaltimeter. getHeightAvg (20);
-  if (Sebastian.timerExpired()==true && current_height >= 4)
- { 
-  Sebastian.getPicture(); //take maximum amount of pictures within the general time frame
-Sebastian.beginTimer(500); //allow a small pause between takes
- }
+  current_height = myaltimeter.getHeightAvg (10);
   
-    distance = proximity.getDistance();  
+  if (Sebastian.timerExpired()==true && current_height >= 4)
+  {
+    Sebastian.getPicture(); //take maximum amount of pictures within the general time frame
+    Sebastian.beginTimer(5000); //allow a small pause between takes
+  }
+
+    distance = proximity.getDistance();
     Serial.print("Current Distance:");
     Serial.println(distance);
 
 
-  
+
 if (distance <200) {
-  proximity.alarm(2,2000,100);
+  proximity.alarm(6 ,2000,100);
   }
 
 
@@ -64,3 +65,4 @@ if (current_height>1)
     myaltimeter.alarm(6,2000,500);
   }
 }
+
