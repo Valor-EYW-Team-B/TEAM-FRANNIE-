@@ -1,3 +1,4 @@
+// test from Jerry
 #include <EYW.h>
 #include <Servo.h>
 #include <Wire.h>
@@ -39,7 +40,7 @@ void loop() {
   if (Sebastian.timerExpired()==true && current_height >= 3)
   {
     Sebastian.getPicture(); //take maximum amount of pictures within the general time frame
-    Sebastian.beginTimer(5000); //allow a small pause between takes
+    Sebastian.beginTimer(1000); //allow a small pause between takes
   }
 
     distance = proximity.getDistance();
