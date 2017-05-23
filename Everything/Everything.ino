@@ -6,7 +6,7 @@
 EYW::Altimeter myaltimeter;
 EYW::RangeFinder proximity;
 int distance = 0;
-EYW::Camera Sebastian; //because I can
+EYW::Camera Sebastian;
 float current_height = 0;
 
 
@@ -22,7 +22,7 @@ proximity.calibrate(10);
 Sebastian.begin();
 Sebastian.calibrate();
 Sebastian.alarm(1,800,500);
-Sebastian.beginTimer(1000); //allows time for descent
+Sebastian.beginTimer(1000);
 
 
 
@@ -39,8 +39,8 @@ void loop() {
   
   if (Sebastian.timerExpired()==true && current_height >= 3)
   {
-    Sebastian.getPicture(); //take maximum amount of pictures within the general time frame
-    Sebastian.beginTimer(1000); //allow a small pause between takes
+    Sebastian.getPicture();
+    Sebastian.beginTimer(1000);
   }
 
     distance = proximity.getDistance();
@@ -61,7 +61,7 @@ Serial.println(current_height);
 
 
 
-if (current_height>1)
+if (current_height>3)
   {
     myaltimeter.alarm(6,2000,500);
   }
