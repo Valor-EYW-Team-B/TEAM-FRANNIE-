@@ -41,24 +41,24 @@ Serial.println(current_height);
 
 
 
-if (current_height > 3) {
+if (current_height > 0.5) {
   myaltimeter.alarm(2, 1500, 4000);
 }
 
 
 
-if (current_height >= 40 && current_height <= 50) {
+if (current_height >= 0.2 && current_height <= 3) {
   altimeterheight= true;
 }
 
 
-if (current_height >= 30 && altimeterheight==true && current_height <= 40) {
+if (current_height >= 0.5 && altimeterheight==true && current_height <= 2.5) {
   PServo.getPicture();
   PServo.beginTimer(3000);
 }
 
 
-if (current_height < 2) {
+if (current_height < 1) {
   myRangeFinder.getDistance();
   Serial.print("Current Distance:");
   Serial.println(distance);
